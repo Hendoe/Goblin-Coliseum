@@ -8,7 +8,7 @@
     
     /* 1
     Goblins are Objects */
-    let goblin = {
+    let goblin1 = {
         health: 100,
         power: 7,
     };
@@ -42,9 +42,13 @@
     Returning the new overall Health of the Defender as a percentage */
 
     /* Let's do a test */
-    let goblin1 = goblin;
-    let goblin2 = goblin;
+    let goblin2 = {
+        health: 100,
+        power: 7,
+    };
+    console.log("Goblin #1");
     console.log(goblin1);
+    console.log("Goblin #2");
     console.log(goblin2);
     console.log(attack(goblin1, goblin2, axe));
     
@@ -63,7 +67,7 @@
     /* 1
     The Defending Goblin becomes an updated Object with a new health value */
     const woundedGoblin = (gobbo, pain) => {
-        gobbo.health =- pain;
+        gobbo.health -= pain;
         console.log(`The Gobbo suffered ${pain} points of painful damage`);
         return gobbo; 
     };
@@ -101,24 +105,58 @@
     /* So...
     ***/ console.clear(); /***
     Does it Work? Test! */
-    const goblin3 = goblin;
-    const goblin4 = goblin;
-    console.log(combatRound(goblin3, axe, goblin4, sword));
+    console.log(combatRound(goblin1, axe, goblin2, sword));
     console.log("All our Goblins Status:");
     console.log("Goblin #1");
     console.log(goblin1);
     console.log("Goblin #2");
     console.log(goblin2);
-    console.log("Goblin #3");
-    console.log(goblin3);
-    console.log("Goblin #4");
-    console.log(goblin4);
     
  //
     /* Okay...
     The Goblins are going through the motions... that's for sure...
-    But the impact of their experiences isn't lasting.
+    But some more goblins showed up, and there aren't looking for a fight!
     What to do? */
 
+    let goblin3 = {
+        health: 100,
+        power: 7,
+    };
+
+    let goblin4 = {
+        health: 100,
+        power: 7,
+    };
+
+    let goblin5 = {
+        health: 100,
+        power: 7,
+    };
+
+    //Let's try creating an array and filling it with our just fighting Goblins
+    let fightingGoblins = [];
     
+    function newCombatRound(gob1, wep1, gob2, wep2) {
+        let defender = newAttack(gob1, gob2, wep1);
+        let attacker = newAttack(defender, gob1, wep2);
+        fightingGoblins = [attacker, defender];
+        return `After a single round, the aggresor Goblin has ${attacker.health} points of health left, compared to the defenders ${defender.health} points of health.`;  
+    };
+    
+    //Testing
+    console.clear();
+    console.log(newCombatRound(goblin1, axe, goblin2, sword));
+    console.log("Goblin #1");
+    console.log(goblin1);
+    console.log("Goblin #2");
+    console.log(goblin2);
+    console.log("Whose fighting?")
+    console.log(fightingGoblins);
     //
+
+    //Still fighting...
+    console.log(newCombatRound(goblin1, axe, goblin2, sword));
+    console.log(fightingGoblins);
+    
+    /*Not looking good for Goblin # 2
+    What happens when he runs out of health? */
